@@ -1,3 +1,6 @@
+export PNPM_HOME="/Users/leandrosantos/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 set fish_greeting ""
 
 set -gx TERM xterm-256color
@@ -15,6 +18,8 @@ alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll -A"
 alias g git
+alias cls clear
+alias npm pnpm
 command -qv nvim && alias vim nvim
 
 set -gx EDITOR nvim
@@ -40,6 +45,13 @@ function __check_rvm --on-variable PWD --description 'Do nvm stuff'
   end
 end
 
+# NIX
+if test -e '/Users/leandrosantos/.nix-profile/etc/profile.d/nix.sh'
+  fenv source '/Users/leandrosantos/.nix-profile/etc/profile.d/nix.sh'
+end
+# END NIX
+
+
 switch (uname)
   case Darwin
     source (dirname (status --current-filename))/config-osx.fish
@@ -53,3 +65,5 @@ set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
 if test -f $LOCAL_CONFIG
   source $LOCAL_CONFIG
 end
+
+set PATH /Users/leandrosantos/.nvm/versions/node/v8.9.4/bin $PATH
